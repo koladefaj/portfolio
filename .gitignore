@@ -1,0 +1,11 @@
+.vercel
+.claude/
+.impeccable/
+%TEMP%/
+*.log
+PRODUCT.md
+DESIGN.md
+Professional Portrait of a Young Man.png
+.env
+.env.*
+\!p.startsWith*

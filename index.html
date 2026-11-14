@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kolade Fajimi · LLM Platform Engineer</title>
+<meta name="description" content="Kolade Fajimi is an LLM Platform Engineer at EmbeddedLLM with 13 patches merged upstream into SGLang, vLLM Semantic Router, LiteLLM and AReaL.">
+<meta property="og:title" content="Kolade Fajimi · LLM Platform Engineer">
+<meta property="og:description" content="13 patches merged upstream into SGLang, vLLM Semantic Router, LiteLLM and AReaL. The serving stack, drawn as one machine.">
+<meta property="og:image" content="assets/share.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f0ecd9">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1.5' y='1.5' width='29' height='29' fill='%23f0ecd9' stroke='%23141416' stroke-width='2'/%3E%3Cpath d='M9 8v16M9 16l8-8M12 14l7 10M22 8v16' fill='none' stroke='%23b3141a' stroke-width='2.2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=16">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- shared drawing inks -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="5" class="hatch-ln"/>
+    </pattern>
+    <pattern id="hatch-fine" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="3" class="hatch-ln"/>
+    </pattern>
+    <pattern id="hatch-wide" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="9" class="hatch-ln"/>
+    </pattern>
+    <pattern id="hatch-cross" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 0V5M0 0H5" class="hatch-ln"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1 9 5 0 9z" class="arrow-head"/>
+    </marker>
+  </defs>
+</svg>
+
+<div class="frame" aria-hidden="true"></div>
+
+<header class="head">
+  <span class="mono" aria-hidden="true"><span>K</span><span>F</span></span>
+  <p class="head-title">Kolade Fajimi <span>Improvements in the serving of large language models</span></p>
+  <p class="head-sheet">Sheet 1 of 1</p>
+</header>
+
+<main id="main" class="sheet">
+
+  <!-- who -->
+  <section class="who" aria-label="About Kolade Fajimi">
+    <figure class="portrait">
+      <img src="assets/kolade.jpg" alt="Kolade Fajimi" width="960" height="960" decoding="async">
+      <span class="reg tl"></span><span class="reg tr"></span><span class="reg bl"></span><span class="reg br"></span>
+      <svg class="seal" viewBox="0 0 140 140" role="img" aria-label="Seal: 13 patches merged upstream">
+        <defs><path id="seal-arc" d="M70 70m-52 0a52 52 0 1 1 104 0a52 52 0 1 1-104 0"/></defs>
+        <circle cx="70" cy="70" r="66"/><circle cx="70" cy="70" r="62"/><circle cx="70" cy="70" r="40"/>
+        <text class="seal-ring"><textPath href="#seal-arc" startOffset="0">MERGED UPSTREAM · FOUR PROJECTS · 2026 ·</textPath></text>
+        <text class="seal-n" x="70" y="80" text-anchor="middle">13</text>
+        <text class="seal-s" x="70" y="96" text-anchor="middle">PATCHES</text>
+      </svg>
+    </figure>
+    <div class="who-copy">
+      <h1><span class="line"><span>Kolade</span></span> <span class="line"><span>Fajimi</span></span></h1>
+      <p class="role">LLM Platform Engineer /<br>OSS Contributor</p>
+      <p class="lede">I work on the machinery that serves large language models, and I send my fixes upstream to the projects everyone runs.</p>
+      <dl class="filing">
+        <div><dt>Now</dt><dd>LLM Platform Engineer, EmbeddedLLM</dd></div>
+        <div><dt>Also</dt><dd>Full-stack AI Engineer, Fourstrides</dd></div>
+        <div><dt>Based</dt><dd>Nigeria</dd></div>
+      </dl>
+      <ul class="social">
+        <li><a class="soc" href="https://github.com/koladefaj" aria-label="GitHub, koladefaj" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        <li><a class="soc" href="https://x.com/akoladefaj" aria-label="X, @akoladefaj" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a></li>
+        <!-- TODO: replace with your LinkedIn profile URL -->
+        <li><a class="soc" href="https://www.linkedin.com/" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
+        <li><a class="btn" href="resume.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Résumé</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- the machine -->
+  <section class="machine" aria-label="The LLM serving stack">
+    <div class="fig-head">
+      <p class="fig-no">Fig. 1 <span>The serving stack, exploded</span></p>
+      <button class="toggle" type="button" id="explode" aria-pressed="true">Assemble</button>
+    </div>
+    <svg id="stack" class="stack" role="group" aria-label="Exploded view of the LLM serving stack in five numbered parts. Select a part to read the patches merged into it."></svg>
+    <p class="hint">Click a part to read what I fixed in it. Click again to assemble.</p>
+    <div class="flow-controls"><span id="flow-status">Input → compute → output</span><button id="pause-flow" type="button" aria-pressed="false">Pause flow</button></div>
+  </section>
+
+  <!-- claims -->
+  <section class="panel" aria-label="Merged pull requests">
+    <div class="tabs" role="tablist" aria-label="Parts of the stack">
+      <button role="tab" id="tab-litellm" aria-controls="panel-litellm" aria-selected="false" tabindex="-1" data-tab="litellm"><img src="assets/logos/BerriAI.png" alt="" width="28" height="28"><b>10</b><span>LiteLLM</span></button>
+      <button role="tab" id="tab-router" aria-controls="panel-router" aria-selected="false" tabindex="-1" data-tab="router"><img src="assets/logos/vllm-project.png" alt="" width="28" height="28"><b>20</b><span>Semantic Router</span></button>
+      <button role="tab" id="tab-sglang" aria-controls="panel-sglang" aria-selected="true" data-tab="sglang"><img src="assets/logos/sgl-project.png" alt="" width="28" height="28"><b>30</b><span>SGLang</span></button>
+      <button role="tab" id="tab-areal" aria-controls="panel-areal" aria-selected="false" tabindex="-1" data-tab="areal"><img src="assets/logos/areal-project.png" alt="" width="28" height="28"><b>50</b><span>AReaL</span></button>
+    </div>
+    <div class="panels">
+        <article class="fig" id="panel-litellm" role="tabpanel" aria-labelledby="tab-litellm" data-parts="10" hidden>
+          <figure class="fig-art">
+          <svg viewBox="0 12 520 316" role="img" aria-label="Diagram: caller requests pass a key check at the gateway plate and fan out to three providers; one request with an unknown key is refused">
+            <g class="draw">
+              <path class="ln" d="M40 70H216M40 120H216M40 170H216M40 220H216" />
+              <rect class="ln" x="220" y="46" width="40" height="248"/>
+              <circle class="ln paper" cx="240" cy="170" r="15"/>
+              <path class="ln thin" d="M240 163a4 4 0 1 1 0 8M240 171v7"/>
+              <path class="ln" d="M260 100C330 100 340 90 420 90" marker-end="url(#arrow)"/>
+              <path class="ln" d="M260 170H420" marker-end="url(#arrow)"/>
+              <path class="ln" d="M260 240C330 240 340 250 420 250" marker-end="url(#arrow)"/>
+              <circle class="ln" cx="442" cy="90" r="18"/><circle class="ln" cx="442" cy="170" r="18"/><circle class="ln" cx="442" cy="250" r="18"/>
+              <path class="ln mark" d="M40 270H164"/>
+              <circle class="ln mark" cx="178" cy="270" r="11"/><path class="ln mark" d="M170 278l16-16"/>
+            </g>
+            <g class="fills">
+              <rect x="220" y="46" width="40" height="248" fill="url(#hatch)"/>
+              <circle cx="240" cy="170" r="15" class="paper-fill"/>
+              <circle cx="442" cy="170" r="18" fill="url(#hatch-wide)"/>
+            </g>
+            <path class="ln thin over" d="M240 163a4 4 0 1 1 0 8M240 171v7"/><circle class="ln over" cx="240" cy="170" r="15"/>
+            <circle class="pulse" r="4"><animateMotion dur="3.2s" repeatCount="indefinite" path="M40 70H220" keyPoints="0;1;1" keyTimes="0;0.5;1" calcMode="linear"/></circle>
+            <circle class="pulse" r="4"><animateMotion dur="3.2s" begin="-1.6s" repeatCount="indefinite" path="M260 170H420" keyPoints="0;1;1" keyTimes="0;0.5;1" calcMode="linear"/></circle>
+            <circle class="pulse" r="4"><animateMotion dur="3.2s" begin="-0.8s" repeatCount="indefinite" path="M40 170H220" keyPoints="0;1;1" keyTimes="0;0.5;1" calcMode="linear"/></circle>
+            <g class="callouts">
+              <path class="lead" d="M300 28Q270 34 248 154"/><circle class="dot" cx="247" cy="156" r="2.5"/><text class="num" x="306" y="34">11</text>
+              <path class="lead" d="M486 300Q478 290 456 262"/><circle class="dot" cx="455" cy="261" r="2.5"/><text class="num" x="478" y="318">12</text>
+              <path class="lead mark" d="M120 314Q150 312 172 283"/><circle class="dot mark" cx="173" cy="281" r="2.5"/><text class="num mark" x="92" y="322">13</text>
+            </g>
+          </svg>
+            <figcaption><b>Fig. 4</b> 11 key check · 12 providers · 13 refused</figcaption>
+          </figure>
+          <h2>The gateway every request passes first</h2>
+          <p class="proj"><img src="assets/logos/BerriAI.png" alt="" width="22" height="22"><a href="https://github.com/BerriAI/litellm">BerriAI/litellm</a> <span>63.2k stars</span></p>
+          <p class="blurb">An AI gateway to 100+ LLM APIs. My patches decide who gets in and what a failure says.</p>
+          <ol class="claims" start="1">
+            <li><a href="https://github.com/BerriAI/litellm/pull/39787"><span class="c-t">Auth: an unknown key receives a generic 401.</span><span class="c-m"><b>#39787</b> 15 Oct 2026 <i>+647 −46</i></span></a></li>
+            <li><a href="https://github.com/BerriAI/litellm/pull/40173"><span class="c-t">Vertex: an unreadable credentials file is reported as a read failure.</span><span class="c-m"><b>#40173</b> 15 Oct 2026 <i>+1323 −101</i></span></a></li>
+            <li><a href="https://github.com/BerriAI/litellm/pull/30644"><span class="c-t">Redis: env var string types are coerced, and parameter discovery works through decorator wrappers.</span><span class="c-m"><b>#30644</b> 1 Sep 2026 <i>+443 −27</i></span></a></li>
+          </ol>
+        </article>
+
+        <article class="fig" id="panel-router" role="tabpanel" aria-labelledby="tab-router" data-parts="20" hidden>
+          <figure class="fig-art">
+          <svg viewBox="0 0 520 318" role="img" aria-label="Diagram: a request enters a classifier hub and is routed down one of three lanes to a model; above, a context window bar shows request tokens and the room left for content">
+            <g class="draw">
+              <rect class="ln" x="40" y="44" width="440" height="24"/>
+              <path class="ln thin" d="M352 44v24"/>
+              <path class="ln thin" d="M352 78v8h128v-8"/>
+              <path class="ln" d="M40 200H170" marker-end="url(#arrow)"/>
+              <circle class="ln" cx="200" cy="200" r="28"/><circle class="ln thin" cx="200" cy="200" r="9"/>
+              <path class="ln" id="lane-a" d="M228 200C300 200 310 130 396 130" marker-end="url(#arrow)"/>
+              <path class="ln" id="lane-b" d="M228 200H396" marker-end="url(#arrow)"/>
+              <path class="ln" id="lane-c" d="M228 200C300 200 310 270 396 270" marker-end="url(#arrow)"/>
+              <rect class="ln" x="400" y="112" width="80" height="36"/><rect class="ln" x="400" y="182" width="80" height="36"/><rect class="ln" x="400" y="252" width="80" height="36"/>
+            </g>
+            <g class="fills">
+              <rect x="40" y="44" width="312" height="24" fill="url(#hatch)"/>
+              <rect x="400" y="182" width="80" height="36" fill="url(#hatch-wide)"/>
+            </g>
+            <circle class="pulse" r="4"><animateMotion dur="3.6s" repeatCount="indefinite" path="M40 200H228C300 200 310 130 396 130" keyPoints="0;1;1" keyTimes="0;0.5;1" calcMode="linear"/></circle>
+            <circle class="pulse" r="4"><animateMotion dur="3.6s" begin="-1.2s" repeatCount="indefinite" path="M40 200H396" keyPoints="0;1;1" keyTimes="0;0.5;1" calcMode="linear"/></circle>
+            <circle class="pulse" r="4"><animateMotion dur="3.6s" begin="-2.4s" repeatCount="indefinite" path="M40 200H228C300 200 310 270 396 270" keyPoints="0;1;1" keyTimes="0;0.5;1" calcMode="linear"/></circle>
+            <g class="callouts">
+              <path class="lead" d="M150 128Q178 136 188 172"/><circle class="dot" cx="189" cy="174" r="2.5"/><text class="num" x="136" y="134">21</text>
+              <path class="lead" d="M300 300Q330 296 344 258"/><circle class="dot" cx="345" cy="256" r="2.5"/><text class="num" x="272" y="308">22</text>
+              <path class="lead" d="M430 20Q420 30 416 84"/><circle class="dot" cx="416" cy="86" r="2.5"/><text class="num" x="436" y="26">23</text>
+            </g>
+          </svg>
+            <figcaption><b>Fig. 3</b> 21 classifier · 22 model lanes · 23 content room in the window</figcaption>
+          </figure>
+          <h2>The router that decides which model answers</h2>
+          <p class="proj"><img src="assets/logos/vllm-project.png" alt="" width="22" height="22"><a href="https://github.com/vllm-project/semantic-router">vllm-project/semantic-router</a> <span>6.4k stars</span></p>
+          <p class="blurb">A programmable decision layer in front of models. I fixed its classify window handling and locked three training environments.</p>
+          <ol class="claims" start="4">
+            <li><a href="https://github.com/vllm-project/semantic-router/pull/6166"><span class="c-t">The model runtime fails classify windows that have no content room for the request.</span><span class="c-m"><b>#6166</b> 11 Nov 2026 <i>+52 −9</i></span></a></li>
+            <li><a href="https://github.com/vllm-project/semantic-router/pull/5101"><span class="c-t">Locked uv environment for the ML model selection trainer.</span><span class="c-m"><b>#5101</b> 16 Oct 2026 <i>+3040 −3</i></span></a></li>
+            <li><a href="https://github.com/vllm-project/semantic-router/pull/5086"><span class="c-t">Locked uv environment for the user feedback classifier.</span><span class="c-m"><b>#5086</b> 16 Oct 2026 <i>+2897 −2</i></span></a></li>
+            <li><a href="https://github.com/vllm-project/semantic-router/pull/5077"><span class="c-t">Locked uv environment for domain classifier data preparation.</span><span class="c-m"><b>#5077</b> 16 Oct 2026 <i>+747 −2</i></span></a></li>
+          </ol>
+        </article>
+
+        <article class="fig" id="panel-sglang" role="tabpanel" aria-labelledby="tab-sglang" data-parts="30 40">
+          <figure class="fig-art">
+          <svg viewBox="0 40 520 210" role="img" aria-label="Diagram: a grid of packed 4-bit weights feeds a kernel block that emits 16-bit activations">
+            <g class="draw">
+              <rect class="ln" x="40" y="110" width="180" height="120"/>
+              <path class="ln thin" d="M70 110v120M100 110v120M130 110v120M160 110v120M190 110v120M40 140h180M40 170h180M40 200h180"/>
+              <rect class="ln" x="290" y="120" width="110" height="100"/>
+              <path class="ln thin" d="M290 144h110M310 166h70M310 182h70M310 198h70"/>
+              <path class="ln" d="M220 170H286" marker-end="url(#arrow)"/>
+              <path class="ln" d="M400 170H436" marker-end="url(#arrow)"/>
+              <path class="ln" d="M446 230V150h14v80zM466 230V112h14v118zM446 230h34"/>
+            </g>
+            <g class="fills">
+              <rect x="40" y="110" width="30" height="30" fill="url(#hatch)"/><rect x="100" y="110" width="30" height="30" fill="url(#hatch-fine)"/><rect x="190" y="110" width="30" height="30" fill="url(#hatch-wide)"/>
+              <rect x="70" y="140" width="30" height="30" fill="url(#hatch-wide)"/><rect x="130" y="140" width="30" height="30" fill="url(#hatch-cross)"/><rect x="160" y="140" width="30" height="30" fill="url(#hatch)"/>
+              <rect x="40" y="170" width="30" height="30" fill="url(#hatch-fine)"/><rect x="100" y="170" width="30" height="30" fill="url(#hatch)"/><rect x="190" y="170" width="30" height="30" fill="url(#hatch-cross)"/>
+              <rect x="70" y="200" width="30" height="30" fill="url(#hatch-cross)"/><rect x="130" y="200" width="30" height="30" fill="url(#hatch-wide)"/><rect x="160" y="200" width="30" height="30" fill="url(#hatch-fine)"/>
+              <rect x="290" y="120" width="110" height="24" fill="url(#hatch)"/>
+              <rect x="446" y="150" width="14" height="80" fill="url(#hatch-wide)"/><rect x="466" y="112" width="14" height="118" fill="url(#hatch-wide)"/>
+            </g>
+            <circle class="pulse" r="4"><animateMotion dur="2.8s" repeatCount="indefinite" path="M220 170H290" keyPoints="0;1;1" keyTimes="0;0.4;1" calcMode="linear"/></circle>
+            <circle class="pulse" r="4"><animateMotion dur="2.8s" begin="-1.1s" repeatCount="indefinite" path="M400 170H444" keyPoints="0;1;1" keyTimes="0;0.4;1" calcMode="linear"/></circle>
+            <g class="callouts">
+              <path class="lead" d="M92 62Q120 70 130 108"/><circle class="dot" cx="130" cy="110" r="2.5"/><text class="num" x="78" y="68">41</text>
+              <path class="lead" d="M330 66Q352 78 346 118"/><circle class="dot" cx="346" cy="120" r="2.5"/><text class="num" x="316" y="72">42</text>
+              <path class="lead" d="M452 62Q474 70 473 110"/><circle class="dot" cx="473" cy="112" r="2.5"/><text class="num" x="438" y="68">43</text>
+            </g>
+          </svg>
+            <figcaption><b>Fig. 2</b> 41 packed 4-bit weights · 42 FP4 Marlin kernel · 43 16-bit activations</figcaption>
+          </figure>
+          <h2>The runtime, and the weights it loads</h2>
+          <p class="proj"><img src="assets/logos/sgl-project.png" alt="" width="22" height="22"><a href="https://github.com/sgl-project/sglang">sgl-project/sglang</a> <span>38.8k stars</span></p>
+          <p class="blurb">A high-performance serving framework. I work where a 4&#8209;bit quantized checkpoint meets the engine and its kernels.</p>
+          <ol class="claims" start="8">
+            <li><a href="https://github.com/sgl-project/sglang/pull/49531"><span class="c-t">GLM-4.7-Flash loads compressed-tensors W4A16 checkpoints.</span><span class="c-m"><b>#49531</b> 11 Nov 2026 <i>+684 −26</i></span></a></li>
+            <li><a href="https://github.com/sgl-project/sglang/pull/44213"><span class="c-t">NVFP4 W4A4 linear layers are served through FP4 Marlin when <code>--fp4-gemm-backend marlin</code> is set on SM100.</span><span class="c-m"><b>#44213</b> 16 Oct 2026 <i>+43 −6</i></span></a></li>
+          </ol>
+        </article>
+
+        <article class="fig" id="panel-areal" role="tabpanel" aria-labelledby="tab-areal" data-parts="50" hidden>
+          <figure class="fig-art">
+          <svg viewBox="0 12 520 310" role="img" aria-label="Diagram: a training loop of rollout, reward and weight sync, with a valve between weight sync and the SGLang runtime">
+            <g class="draw">
+              <circle class="ln" cx="190" cy="170" r="104"/>
+              <path class="ln" d="M196 66l-10-6v12z M288.5 205l1 12 9-8z M85 205l9 8 1-12z"/>
+              <rect class="ln paper" x="164" y="48" width="52" height="36"/>
+              <circle class="ln paper" cx="100" cy="222" r="20"/>
+              <path class="ln paper" d="M266 206l28 32v-32l-28 32z"/>
+              <path class="ln dashed" d="M294 222H410"/>
+              <rect class="ln" x="410" y="186" width="70" height="72"/>
+              <path class="ln thin" d="M424 186v72M438 186v72M452 186v72M466 186v72"/>
+            </g>
+            <g class="fills">
+              <rect x="164" y="48" width="52" height="36" fill="url(#hatch-wide)"/>
+              <circle cx="100" cy="222" r="20" fill="url(#hatch)"/>
+            </g>
+            <circle class="pulse" r="4"><animateMotion dur="5s" repeatCount="indefinite" path="M190 66a104 104 0 1 1 0 208a104 104 0 1 1 0-208"/></circle>
+            <g class="callouts">
+              <path class="lead" d="M258 26Q236 30 218 50"/><circle class="dot" cx="217" cy="51" r="2.5"/><text class="num" x="264" y="32">51</text>
+              <path class="lead" d="M44 150Q60 170 84 208"/><circle class="dot" cx="85" cy="209" r="2.5"/><text class="num" x="26" y="146">52</text>
+              <path class="lead" d="M318 300Q300 280 284 240"/><circle class="dot" cx="283" cy="238" r="2.5"/><text class="num" x="322" y="316">53</text>
+              <path class="lead" d="M470 136Q462 160 452 184"/><circle class="dot" cx="451" cy="186" r="2.5"/><text class="num" x="462" y="130">30</text>
+            </g>
+          </svg>
+            <figcaption><b>Fig. 5</b> 51 rollout · 52 reward · 53 weight sync valve · 30 runtime</figcaption>
+          </figure>
+          <h2>The trainer that feeds the weights back</h2>
+          <p class="proj"><img src="assets/logos/areal-project.png" alt="" width="22" height="22"><a href="https://github.com/areal-project/AReaL">areal-project/AReaL</a> <span>5.9k stars</span></p>
+          <p class="blurb">A reinforcement learning bridge for LLM agents. I work on its engine and its service layer.</p>
+          <ol class="claims" start="10">
+            <li><a href="https://github.com/areal-project/AReaL/pull/1564"><span class="c-t">Engine: per-PP weight sync is gated on the SGLang backend.</span><span class="c-m"><b>#1564</b> 28 Jul 2026 <i>+192 −9</i></span></a></li>
+            <li><a href="https://github.com/areal-project/AReaL/pull/1179"><span class="c-t">The data blueprint is mounted via WSGI, and the engine blueprint adopts Pydantic.</span><span class="c-m"><b>#1179</b> 16 Apr 2026 <i>+135 −162</i></span></a></li>
+            <li><a href="https://github.com/areal-project/AReaL/pull/1154"><span class="c-t">Manual JSON parsing is replaced with Pydantic models.</span><span class="c-m"><b>#1154</b> 13 Apr 2026 <i>+89 −83</i></span></a></li>
+            <li><a href="https://github.com/areal-project/AReaL/pull/1609"><span class="c-t">API docs: obsolete <code>no_save_optim</code> guidance is corrected.</span><span class="c-m"><b>#1609</b> 17 Aug 2026 <i>+104 −28</i></span></a></li>
+          </ol>
+        </article>
+    </div>
+  </section>
+
+  <!-- own projects -->
+  <section class="emb" aria-labelledby="emb-h">
+    <h2 id="emb-h">Also built</h2>
+    <a href="https://github.com/getrelier/relier">
+      <h3>Relier</h3>
+      <p>A zero-job-loss reliability layer for Celery. <code>pip install relier</code></p>
+    </a>
+    <a href="https://github.com/koladefaj/StoryCanon">
+      <h3>StoryCanon <span class="award">3rd place, Supermemory Localhost hackathon</span></h3>
+      <p>A local writing tool that catches continuity errors in fiction.</p>
+    </a>
+    <a href="https://github.com/koladefaj/gia">
+      <h3>Gia</h3>
+      <p>Conversational voice AI with streaming speech and a distilled router.</p>
+    </a>
+  </section>
+
+</main>
+<script src="main.js?v=16" defer></script>
+</body>
+</html>

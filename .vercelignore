@@ -1,0 +1,9 @@
+# Deploy only the public portfolio files.
+*
+!index.html
+!styles.css
+!main.js
+!assets
+!assets/**
+!resume.pdf
+!vercel.json
