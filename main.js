@@ -7,11 +7,11 @@
   // The machine, top to bottom. `tab` is the claims panel a part opens.
   // h is the full height; `deck` is the height of the surface the next part looks down on.
   const PARTS = [
-    { n: 10, name: 'Gateway, LiteLLM', w: 150, h: 14, tab: 'litellm', side: 1 },
-    { n: 20, name: 'Router, vLLM Semantic Router', w: 120, h: 12, tab: 'router', side: -1 },
-    { n: 30, name: 'Runtime, SGLang', w: 150, h: 34, deck: 12, tab: 'sglang', side: 1 },
-    { n: 40, name: 'Weights, SGLang', w: 132, h: 12, tab: 'sglang', side: -1 },
-    { n: 50, name: 'Trainer, AReaL', w: 176, h: 14, tab: 'areal', side: 1 },
+    { n: 10, label: 'Gateway', sub: 'LiteLLM', name: 'Gateway, LiteLLM', w: 150, h: 14, tab: 'litellm', side: 1 },
+    { n: 20, label: 'Router', sub: 'Semantic Router', name: 'Router, vLLM Semantic Router', w: 120, h: 12, tab: 'router', side: -1 },
+    { n: 30, label: 'Runtime', sub: 'SGLang', name: 'Runtime, SGLang', w: 150, h: 34, deck: 12, tab: 'sglang', side: 1 },
+    { n: 40, label: 'Weights', sub: 'quantized, W4A16', name: 'Weights, SGLang', w: 132, h: 12, tab: 'sglang', side: -1 },
+    { n: 50, label: 'Trainer', sub: 'AReaL', name: 'Trainer, AReaL', w: 176, h: 14, tab: 'areal', side: 1 },
   ];
   const flowDots = [];
 
@@ -22,7 +22,7 @@
     return node;
   };
 
-  function buildStack(svg, { s = 1, gap = 60, lx = 236, width = 580 } = {}) {
+  function buildStack(svg, { s = 1, gap = 60, lx = 170, width = 580 } = {}) {
     const iso = (x, y, z) => [((x - y) * C * s).toFixed(1), (((x + y) * S - z) * s).toFixed(1)];
     const pts = (arr) => arr.map((p) => iso(...p).join(',')).join(' ');
     const stackH = PARTS.reduce((a, p) => a + p.h, 0);
@@ -61,7 +61,7 @@
       const a = p.w / 2, deck = p.deck || p.h;
       const outer = el('g', { transform: `translate(${cx} ${(by - z * s).toFixed(1)})` }, svg);
       const mv = el('g', { class: 'mv', style: `--j:${j}` }, outer);
-      const link = el('a', { href: `#panel-${p.tab}`, 'aria-label': `Part ${p.n}: ${p.name}. Show its merged pull requests.` }, mv);
+      const link = el('a', { href: `#panel-${p.tab}`, 'aria-label': `${p.name}. Show its merged pull requests.` }, mv);
       const g = el('g', { class: 'part', 'data-part': p.n, 'data-tab': p.tab }, link);
 
       if (p.n === 30) pins(g, a, 0, 9, 10);
@@ -76,7 +76,6 @@
         for (const y of [-40, 0, 40]) for (const x of [-46, 0, 46]) {
           flat('rect', { x: x - 16, y: y - 10, width: 32, height: 20, rx: 2 });
           flat('path', { d: `M${x - 9} ${y}h18` }, 'det socket-mark');
-          el('text', { x, y: y + 3, class: 'socket-output', 'text-anchor': 'middle', 'aria-hidden': 'true' }, t);
         }
       } else if (p.n === 20) {
         // router: one switch, traces out to four pads
@@ -100,13 +99,16 @@
         for (let i = 1; i < n; i++) d += `M${o + i * c} ${o}v${c * n}M${o} ${o + i * c}h${c * n}`;
         flat('path', { d });
         for (let row = 0; row < n; row++) for (let col = 0; col < n; col++) {
-          flat('rect', { x: o + col * c + 2, y: o + row * c + 2, width: c - 4, height: c - 4 }, 'weight-cell');
+          flat('rect', { x: o + col * c + 2, y: o + row * c + 2, width: c - 4, height: c - 4, style: `--i:${(row * 7 + col * 3) % 11}` }, 'weight-cell');
         }
       } else {
         // trainer: the board everything sits on, with the feedback loop traced into it
         flat('circle', { cx: 0, cy: 0, r: 62 }); flat('circle', { cx: 0, cy: 0, r: 50 });
         flat('path', { d: 'M49-4l7-11 7 11M-63 4l7 11 7-11' });
         for (const [x, y] of [[-74, -74], [74, 74], [-74, 74], [74, -74]]) flat('circle', { cx: x, cy: y, r: 5 });
+        // the training loop turns on its own, whatever the request above is doing
+        const lap = flat('circle', { r: 4 }, 'pulse loop');
+        el('animateMotion', { dur: '7s', repeatCount: 'indefinite', path: 'M0-56a56 56 0 1 1 0 112a56 56 0 1 1 0-112' }, lap);
       }
       if (p.n === 30) block(g, 34, deck, p.h, { hatchLeft: true, hatchTop: 'hx' });
 
@@ -124,15 +126,17 @@
       const lab = el('g', { class: 'lab' }, g);
       const [ax, ay] = iso(p.side > 0 ? a : -a, p.side > 0 ? 0 : a, deck).map(Number);
       const ex = ax - p.side * 10 * s, ey = ay - 5 * s;
-      const tx = p.side * lx, ty = ey - 34 * s;
-      const sx = tx - p.side * 22, sy = ty - 7;
+      const tx = p.side * lx, ty = ey - 26 * s;
+      const sx = tx - p.side * 6, sy = ty - 4;
       const curve = `M${sx} ${sy}Q${(ex + p.side * 44 * s).toFixed(1)} ${(sy - 16 * s).toFixed(1)} ${ex} ${ey}`;
       const taut = `M${sx} ${sy}Q${((sx + ex) / 2).toFixed(1)} ${((sy + ey) / 2).toFixed(1)} ${ex} ${ey}`;
       const lead = el('path', { class: 'lead', d: curve }, lab);
       lead.dataset.curve = curve; lead.dataset.taut = taut;
       el('circle', { class: 'dot', cx: ex, cy: ey, r: 2.6 }, lab);
-      el('text', { class: 'num', x: tx, y: ty }, lab).textContent = p.n;
-      el('rect', { x: tx - 26, y: ty - 30, width: 52, height: 44, fill: 'transparent' }, lab);
+      const anchor = p.side > 0 ? 'start' : 'end';
+      el('text', { class: 'num', x: tx, y: ty, 'text-anchor': anchor }, lab).textContent = p.label;
+      el('text', { class: 'sub', x: tx, y: ty + 15, 'text-anchor': anchor }, lab).textContent = p.sub;
+      el('rect', { x: p.side > 0 ? tx - 6 : tx - 104, y: ty - 16, width: 110, height: 36, fill: 'transparent' }, lab);
 
       z += p.h;
     });
@@ -140,7 +144,7 @@
 
   /* Fig. 1 */
   const stack = document.getElementById('stack');
-  buildStack(stack, matchMedia('(max-width: 760px)').matches ? { s: 0.86, gap: 52, lx: 170, width: 400 } : {});
+  buildStack(stack, matchMedia('(max-width: 760px)').matches ? { s: 0.86, gap: 52, lx: 140, width: 470 } : {});
   const btn = document.getElementById('explode');
   let exploded = true;
   const setExploded = (on) => {
@@ -153,91 +157,101 @@
   if (!reduce) setTimeout(() => { if (exploded) stack.style.setProperty('--t', 1); }, 550);
   btn.addEventListener('click', () => setExploded(!exploded));
 
-  // A schematic inference cycle; every third response feeds a separate RL update.
-  const gateway = stack.querySelector('[data-part="10"]');
-  const outputSlots = [...gateway.querySelectorAll('.socket-output')];
-  const socketMarks = [...gateway.querySelectorAll('.socket-mark')];
-  const cells = [...stack.querySelectorAll('.weight-cell')];
-  const runtime = stack.querySelector('[data-part="30"]');
-  const trainer = stack.querySelector('[data-part="50"]');
+  /* One request, start to finish: an illustrative trace, in step with the drawing. */
+  const trace = document.getElementById('trace');
   const status = document.getElementById('flow-status');
   const pause = document.getElementById('pause-flow');
-  let paused = reduce, visible = true, elapsed = 0, previous = null, frame = 0;
-  const words = ['The', ' capital', ' of', ' France', ' is', ' Paris.'];
-  function renderFlow(seconds) {
-    // Two normal round trips, then one trip that continues to the trainer.
-    // Each connector takes one second. Effects start only on arrival.
-    const phase = seconds % 40;
-    const training = phase >= 24;
-    const t = training ? phase - 24 : phase % 12;
-    const computing = t >= 3 && t < 4;
-    const rewarding = training && t >= 5 && t < 7;
-    const updating = training && t >= 8 && t < 9;
-    const returnStart = training ? 7 : 4;
-    const returnRoute = training ? [50, 40, 30, 20] : [40, 30, 20];
-    const streamStart = returnStart + returnRoute.length;
-    const streaming = t >= streamStart;
-    let activePart = null, progress = 0, returning = false;
-    if (t < 3) {
-      activePart = [20, 30, 40][Math.floor(t)];
-      progress = t % 1;
-    } else if (computing) {
-      activePart = 40; progress = 1;
-    } else if (training && t < 5) {
-      activePart = 50; progress = t - 4;
-    } else if (rewarding) {
-      activePart = 50; progress = 1;
-    } else if (!streaming) {
-      const segment = t - returnStart;
-      activePart = returnRoute[Math.floor(segment)];
-      progress = 1 - (segment % 1);
-      returning = true;
-    }
-    const label = computing ? '40 · Weights → compute' : rewarding ? '50 · Reward / policy update'
-      : updating ? '40 · Updated weights' : streaming ? '10 · Streaming response'
-      : returning ? 'Returning upstream' : activePart === 50 ? '40 → 50 · RL feedback' : '10 → 40 · Token flow';
-    if (status.textContent !== label) status.textContent = label;
-    runtime.classList.toggle('is-computing', computing);
-    trainer.classList.toggle('is-training', rewarding);
-    cells.forEach((cell, i) => {
-      const lit = (computing || updating) && (Math.floor(t * 9) + i * 3) % 11 < 4;
-      cell.style.opacity = lit ? '0.65' : '0';
-      cell.classList.toggle('is-update', updating);
-    });
-    const count = streaming ? Math.min(words.length, Math.floor((t - streamStart) * 2) + 1) : 0;
-    outputSlots.forEach((slot, i) => {
-      slot.textContent = i < count ? words[i].trim() : '';
-      socketMarks[i].style.opacity = i < count ? '0' : '1';
-    });
-    flowDots.forEach(({ dot, y0, y1, part }) => {
-      dot.style.opacity = part === activePart ? '1' : '0';
-      dot.classList.toggle('is-return', returning || rewarding);
-      dot.setAttribute('cy', y0 + (y1 - y0) * progress);
-    });
-  }
-  function tick(now) {
-    frame = 0;
-    if (paused || !visible || document.hidden || !exploded) { previous = null; return; }
-    if (previous !== null) elapsed += Math.min(now - previous, 100) / 1000;
-    previous = now;
-    renderFlow(elapsed);
-    frame = requestAnimationFrame(tick);
-  }
-  function resumeFlow() { if (!frame) { previous = null; frame = requestAnimationFrame(tick); } }
-  pause.addEventListener('click', () => {
-    paused = !paused;
-    pause.textContent = paused ? 'Play flow' : 'Pause flow';
-    pause.setAttribute('aria-pressed', String(paused));
-    resumeFlow();
+  const PROMPT = ['The', 'capital', 'of', 'France', 'is'];
+  const IDS = [791, 6864, 315, 9822, 374];
+  const STEPS = [
+    { pick: ' Paris', bars: [['Paris', 0.92], ['the', 0.03], ['Lyon', 0.02], ['a', 0.01]] },
+    { pick: '.', bars: [['.', 0.88], [',', 0.06], ['and', 0.03], ['!', 0.01]] },
+    { pick: '', bars: [['<eos>', 0.97], ['It', 0.01], ['The', 0.01], ['He', 0.01]] },
+  ];
+  const html = (tag, cls, parent, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; parent.appendChild(n); return n; };
+  const toks = trace.querySelector('.tr-toks');
+  PROMPT.forEach((w, k) => { const chip = html('span', '', toks); chip.style.setProperty('--k', k); html('b', '', chip, w); chip.append(IDS[k]); });
+  const kv = trace.querySelector('.tr-kv');
+  const kvCells = [];
+  for (let row = 0; row < 4; row++) for (let col = 0; col < 8; col++) { const c = html('i', '', kv); c.dataset.col = col; c.style.setProperty('--c', col); kvCells.push(c); }
+  const bars = [0, 1, 2, 3].map(() => { const b = html('span', 'bar', trace.querySelector('.tr-bars')); return { b, name: html('em', '', b), fill: html('i', '', b), p: html('b', '', b) }; });
+  const out = trace.querySelector('.tr-out');
+  const stageEls = [...trace.querySelectorAll('.tr')];
+  const allParts = [...stack.querySelectorAll('.part')];
+
+  const setStage = (name, live, text) => {
+    stageEls.forEach((n) => n.classList.toggle('is-on', n.dataset.stage === name));
+    allParts.forEach((n) => n.classList.toggle('is-live', live.includes(+n.dataset.part)));
+    stack.classList.toggle('is-matmul', live.includes(40));
+    status.textContent = text;
+  };
+  const setKV = (n, fresh) => kvCells.forEach((c) => {
+    c.classList.toggle('on', +c.dataset.col < n);
+    c.classList.toggle('new', !!fresh && +c.dataset.col === n - 1);
   });
-  pause.textContent = paused ? 'Play flow' : 'Pause flow';
-  pause.setAttribute('aria-pressed', String(paused));
+  const setBars = (step, picked) => bars.forEach(({ b, name, fill, p }, i) => {
+    const row = step && step.bars[i];
+    name.textContent = row ? row[0] : '';
+    p.textContent = row ? row[1].toFixed(2).slice(1) : '';
+    fill.style.setProperty('--p', row ? row[1] : 0);
+    b.classList.toggle('pick', !!picked && i === 0);
+  });
+  const shoot = (part, up, delay = 0) => {
+    const f = flowDots.find((d) => d.part === part);
+    if (!f || !f.dot.animate) return;
+    const d = f.y1 - f.y0;
+    f.dot.animate([
+      { transform: `translateY(${up ? d : 0}px)`, opacity: 1 },
+      { transform: `translateY(${up ? 0 : d}px)`, opacity: 1 },
+    ], { duration: 850, delay, easing: 'cubic-bezier(0.5, 0, 0.2, 1)' });
+  };
+
+  let run = 0; // bumps on every pause or restart, so late callbacks from an old run do nothing
+  const later = (fn, ms) => { const mine = run; setTimeout(() => { if (mine === run) fn(); }, ms); };
+  const decode = (k) => () => {
+    const last = k === STEPS.length - 1;
+    setStage('softmax', [30, 40], last ? 'Decode: the model predicts end of sequence and stops' : k ? 'Decode again, reusing the cache instead of recomputing' : 'Decode: softmax over the vocabulary, one token is sampled');
+    setBars(STEPS[k], false);
+    later(() => {
+      setBars(STEPS[k], true);
+      out.textContent += STEPS[k].pick;
+      if (!last) setKV(PROMPT.length + k + 1, true);
+    }, 600);
+  };
+  const SEQ = [
+    [500, () => { trace.className = 'trace'; out.textContent = ''; setKV(0); setBars(null); setStage('', [], 'Waiting for a request'); }],
+    [1300, () => { trace.classList.add('s-prompt'); setStage('gateway', [10], 'A request arrives at the gateway'); }],
+    [1200, () => { shoot(20); trace.classList.add('s-route'); setStage('router', [20], 'The router picks a model for it'); }],
+    [1500, () => { shoot(30); trace.classList.add('s-toks'); setStage('tokenize', [30], 'The runtime splits the prompt into tokens'); }],
+    [1700, () => { shoot(40); setKV(PROMPT.length); setStage('cache', [30, 40], 'Prefill: attention keys and values are cached for every token'); }],
+    [1500, decode(0)], [1400, decode(1)], [1300, decode(2)],
+    [3200, () => { shoot(40, true); shoot(30, true, 250); shoot(20, true, 500); setStage('gateway', [10], 'The tokens stream back out through the gateway'); }],
+  ];
+  let step = 0, timer = 0, paused = reduce;
+  function advance() {
+    timer = 0;
+    if (paused || !exploded || document.hidden) return;
+    const [ms, fn] = SEQ[step];
+    fn();
+    step = (step + 1) % SEQ.length;
+    timer = setTimeout(advance, ms);
+  }
+  const resumeFlow = () => { if (!timer) advance(); };
+  const syncPause = () => { pause.textContent = paused ? 'Play' : 'Pause'; pause.setAttribute('aria-pressed', String(paused)); };
+  pause.addEventListener('click', () => {
+    paused = !paused; run++;
+    clearTimeout(timer); timer = 0;
+    syncPause(); resumeFlow();
+  });
+  syncPause();
   document.addEventListener('visibilitychange', resumeFlow);
   new MutationObserver(resumeFlow).observe(stack, { attributes: true, attributeFilter: ['class'] });
-  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; resumeFlow(); }).observe(stack);
-  renderFlow(0);
-  if (reduce) status.textContent = 'Input → compute → output · occasional RL update';
-  setTimeout(resumeFlow, 2100);
+  if (reduce) {
+    // no motion: show the finished trace
+    trace.classList.add('s-prompt', 's-route', 's-toks');
+    setKV(PROMPT.length + 2); setBars(STEPS[0], true); out.textContent = ' Paris.';
+    status.textContent = 'Request, route, tokenize, prefill, decode, stream';
+  } else setTimeout(resumeFlow, 2100);
 
   /* parts and tabs select the same claims panel */
   const parts = [...stack.querySelectorAll('.part')];
@@ -256,18 +270,13 @@
     });
   };
 
-  // one screen, no scrolling: when a panel will not fit, it sheds its legend, then its drawing
+  // Compact the profile when needed; claims panels keep their drawings and scroll.
   const oneScreen = matchMedia('(min-width: 1100px) and (min-height: 600px)');
-  const panelsEl = document.querySelector('.panels');
   const who = document.querySelector('.who');
   const spills = (node) => node.scrollHeight > node.clientHeight + 1;
   function fit() {
-    const a = panels.find((p) => !p.hidden);
-    a.classList.remove('tight', 'tighter');
     who.classList.remove('tight', 'tighter');
     if (!oneScreen.matches) return;
-    if (spills(panelsEl)) a.classList.add('tight');
-    if (spills(panelsEl)) a.classList.add('tighter');
     if (spills(who)) who.classList.add('tight');
     if (spills(who)) who.classList.add('tighter');
   }

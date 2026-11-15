@@ -4,10 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kolade Fajimi · LLM Platform Engineer</title>
-<meta name="description" content="Kolade Fajimi is an LLM Platform Engineer at EmbeddedLLM with 13 patches merged upstream into SGLang, vLLM Semantic Router, LiteLLM and AReaL.">
+<meta name="description" content="Kolade Fajimi is an LLM Platform Engineer at Embedded LLM with 13 patches merged upstream into SGLang, vLLM Semantic Router, LiteLLM and AReaL.">
 <meta property="og:title" content="Kolade Fajimi · LLM Platform Engineer">
 <meta property="og:description" content="13 patches merged upstream into SGLang, vLLM Semantic Router, LiteLLM and AReaL. The serving stack, drawn as one machine.">
-<meta property="og:image" content="assets/share.jpg">
+<meta property="og:url" content="https://koladefajimi.com/">
+<meta property="og:image" content="https://koladefajimi.com/assets/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://koladefajimi.com/assets/share.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f0ecd9">
@@ -15,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=16">
+<link rel="stylesheet" href="styles.css?v=25">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -70,8 +74,8 @@
       <p class="role">LLM Platform Engineer /<br>OSS Contributor</p>
       <p class="lede">I work on the machinery that serves large language models, and I send my fixes upstream to the projects everyone runs.</p>
       <dl class="filing">
-        <div><dt>Now</dt><dd>LLM Platform Engineer, EmbeddedLLM</dd></div>
-        <div><dt>Also</dt><dd>Full-stack AI Engineer, Fourstrides</dd></div>
+        <div><dt>Now</dt><dd>LLM Platform Engineer · Embedded LLM · Singapore (Remote)</dd></div>
+        <div><dt>Also</dt><dd>Full-stack AI Engineer · Fourstrides · United Kingdom (Remote)</dd></div>
         <div><dt>Based</dt><dd>Nigeria</dd></div>
       </dl>
       <ul class="social">
@@ -87,21 +91,28 @@
   <!-- the machine -->
   <section class="machine" aria-label="The LLM serving stack">
     <div class="fig-head">
-      <p class="fig-no">Fig. 1 <span>The serving stack, exploded</span></p>
+      <p class="fig-no">Fig. 1 <span>One request through the serving stack</span></p>
       <button class="toggle" type="button" id="explode" aria-pressed="true">Assemble</button>
     </div>
-    <svg id="stack" class="stack" role="group" aria-label="Exploded view of the LLM serving stack in five numbered parts. Select a part to read the patches merged into it."></svg>
-    <p class="hint">Click a part to read what I fixed in it. Click again to assemble.</p>
-    <div class="flow-controls"><span id="flow-status">Input → compute → output</span><button id="pause-flow" type="button" aria-pressed="false">Pause flow</button></div>
+    <svg id="stack" class="stack" role="group" aria-label="Exploded view of the LLM serving stack: gateway, router, runtime, weights and trainer. Select a layer to read the patches merged into it."></svg>
+    <div class="trace" id="trace" aria-hidden="true">
+      <div class="tr" data-stage="gateway"><b class="tr-h">Gateway</b><p class="tr-prompt">The capital of France is<span class="tr-out"></span></p></div>
+      <div class="tr" data-stage="router"><b class="tr-h">Router</b><div class="tr-lanes"><i></i><i></i><i></i></div></div>
+      <div class="tr" data-stage="tokenize"><b class="tr-h">Tokenize</b><div class="tr-toks"></div></div>
+      <div class="tr" data-stage="cache"><b class="tr-h">KV cache</b><div class="tr-kv"></div></div>
+      <div class="tr" data-stage="softmax"><b class="tr-h">Softmax</b><div class="tr-bars"></div></div>
+    </div>
+    <div class="flow-controls"><span id="flow-status">Waiting for a request</span><button id="pause-flow" type="button" aria-pressed="false">Pause</button></div>
+    <p class="hint">Click a layer to read what I fixed in it. Click again to assemble.</p>
   </section>
 
   <!-- claims -->
   <section class="panel" aria-label="Merged pull requests">
     <div class="tabs" role="tablist" aria-label="Parts of the stack">
-      <button role="tab" id="tab-litellm" aria-controls="panel-litellm" aria-selected="false" tabindex="-1" data-tab="litellm"><img src="assets/logos/BerriAI.png" alt="" width="28" height="28"><b>10</b><span>LiteLLM</span></button>
-      <button role="tab" id="tab-router" aria-controls="panel-router" aria-selected="false" tabindex="-1" data-tab="router"><img src="assets/logos/vllm-project.png" alt="" width="28" height="28"><b>20</b><span>Semantic Router</span></button>
-      <button role="tab" id="tab-sglang" aria-controls="panel-sglang" aria-selected="true" data-tab="sglang"><img src="assets/logos/sgl-project.png" alt="" width="28" height="28"><b>30</b><span>SGLang</span></button>
-      <button role="tab" id="tab-areal" aria-controls="panel-areal" aria-selected="false" tabindex="-1" data-tab="areal"><img src="assets/logos/areal-project.png" alt="" width="28" height="28"><b>50</b><span>AReaL</span></button>
+      <button role="tab" id="tab-litellm" aria-controls="panel-litellm" aria-selected="false" tabindex="-1" data-tab="litellm"><img src="assets/logos/BerriAI.png" alt="" width="28" height="28"><b>Gateway</b><span>LiteLLM</span></button>
+      <button role="tab" id="tab-router" aria-controls="panel-router" aria-selected="false" tabindex="-1" data-tab="router"><img src="assets/logos/vllm-project.png" alt="" width="28" height="28"><b>Router</b><span>Semantic Router</span></button>
+      <button role="tab" id="tab-sglang" aria-controls="panel-sglang" aria-selected="true" data-tab="sglang"><img src="assets/logos/sgl-project.png" alt="" width="28" height="28"><b>Runtime</b><span>SGLang</span></button>
+      <button role="tab" id="tab-areal" aria-controls="panel-areal" aria-selected="false" tabindex="-1" data-tab="areal"><img src="assets/logos/areal-project.png" alt="" width="28" height="28"><b>Trainer</b><span>AReaL</span></button>
     </div>
     <div class="panels">
         <article class="fig" id="panel-litellm" role="tabpanel" aria-labelledby="tab-litellm" data-parts="10" hidden>
@@ -140,9 +151,9 @@
           <p class="proj"><img src="assets/logos/BerriAI.png" alt="" width="22" height="22"><a href="https://github.com/BerriAI/litellm">BerriAI/litellm</a> <span>63.2k stars</span></p>
           <p class="blurb">An AI gateway to 100+ LLM APIs. My patches decide who gets in and what a failure says.</p>
           <ol class="claims" start="1">
-            <li><a href="https://github.com/BerriAI/litellm/pull/39787"><span class="c-t">Auth: an unknown key receives a generic 401.</span><span class="c-m"><b>#39787</b> 15 Oct 2026 <i>+647 −46</i></span></a></li>
-            <li><a href="https://github.com/BerriAI/litellm/pull/40173"><span class="c-t">Vertex: an unreadable credentials file is reported as a read failure.</span><span class="c-m"><b>#40173</b> 15 Oct 2026 <i>+1323 −101</i></span></a></li>
-            <li><a href="https://github.com/BerriAI/litellm/pull/30644"><span class="c-t">Redis: env var string types are coerced, and parameter discovery works through decorator wrappers.</span><span class="c-m"><b>#30644</b> 1 Sep 2026 <i>+443 −27</i></span></a></li>
+            <li><a href="https://github.com/BerriAI/litellm/pull/39787"><span class="c-t">Auth: an unknown key receives a generic 401.</span><span class="c-w">Before, the 401 gave away the key table’s name and the SHA-256 hash of whatever key was sent.</span><span class="c-m"><b>#39787</b> 15 Oct 2026 <i>+647 −46</i></span></a></li>
+            <li><a href="https://github.com/BerriAI/litellm/pull/40173"><span class="c-t">Vertex: an unreadable credentials file is reported as a read failure.</span><span class="c-w">Before, a missing key file was reported as bad JSON, so operators re-issued keys that were working.</span><span class="c-m"><b>#40173</b> 15 Oct 2026 <i>+1323 −101</i></span></a></li>
+            <li><a href="https://github.com/BerriAI/litellm/pull/30644"><span class="c-t">Redis: env var string types are coerced, and parameter discovery works through decorator wrappers.</span><span class="c-w">Before, <code>health_check_interval</code> set from an env var arrived as a string, and every Redis call raised a TypeError.</span><span class="c-m"><b>#30644</b> 1 Sep 2026 <i>+443 −27</i></span></a></li>
           </ol>
         </article>
 
@@ -179,10 +190,10 @@
           <p class="proj"><img src="assets/logos/vllm-project.png" alt="" width="22" height="22"><a href="https://github.com/vllm-project/semantic-router">vllm-project/semantic-router</a> <span>6.4k stars</span></p>
           <p class="blurb">A programmable decision layer in front of models. I fixed its classify window handling and locked three training environments.</p>
           <ol class="claims" start="4">
-            <li><a href="https://github.com/vllm-project/semantic-router/pull/6166"><span class="c-t">The model runtime fails classify windows that have no content room for the request.</span><span class="c-m"><b>#6166</b> 11 Nov 2026 <i>+52 −9</i></span></a></li>
-            <li><a href="https://github.com/vllm-project/semantic-router/pull/5101"><span class="c-t">Locked uv environment for the ML model selection trainer.</span><span class="c-m"><b>#5101</b> 16 Oct 2026 <i>+3040 −3</i></span></a></li>
-            <li><a href="https://github.com/vllm-project/semantic-router/pull/5086"><span class="c-t">Locked uv environment for the user feedback classifier.</span><span class="c-m"><b>#5086</b> 16 Oct 2026 <i>+2897 −2</i></span></a></li>
-            <li><a href="https://github.com/vllm-project/semantic-router/pull/5077"><span class="c-t">Locked uv environment for domain classifier data preparation.</span><span class="c-m"><b>#5077</b> 16 Oct 2026 <i>+747 −2</i></span></a></li>
+            <li><a href="https://github.com/vllm-project/semantic-router/pull/6166"><span class="c-t">The model runtime fails classify windows that have no content room for the request.</span><span class="c-w">Before, every input failed with a bare <code>invalid_input</code> under HTTP 200. Now the request gets a 400 that says why.</span><span class="c-m"><b>#6166</b> 11 Nov 2026 <i>+52 −9</i></span></a></li>
+            <li><a href="https://github.com/vllm-project/semantic-router/pull/5101"><span class="c-t">Locked uv environment for the ML model selection trainer.</span><span class="c-w">The trainer installs from a committed lockfile, and torch stays out of the default environment.</span><span class="c-m"><b>#5101</b> 16 Oct 2026 <i>+3040 −3</i></span></a></li>
+            <li><a href="https://github.com/vllm-project/semantic-router/pull/5086"><span class="c-t">Locked uv environment for the user feedback classifier.</span><span class="c-w">Adds <code>peft</code> and <code>safetensors</code>, which the code imported but the requirements never listed.</span><span class="c-m"><b>#5086</b> 16 Oct 2026 <i>+2897 −2</i></span></a></li>
+            <li><a href="https://github.com/vllm-project/semantic-router/pull/5077"><span class="c-t">Locked uv environment for domain classifier data preparation.</span><span class="c-w">This area had no requirements file at all; it now has pinned bounds and a lockfile.</span><span class="c-m"><b>#5077</b> 16 Oct 2026 <i>+747 −2</i></span></a></li>
           </ol>
         </article>
 
@@ -220,8 +231,8 @@
           <p class="proj"><img src="assets/logos/sgl-project.png" alt="" width="22" height="22"><a href="https://github.com/sgl-project/sglang">sgl-project/sglang</a> <span>38.8k stars</span></p>
           <p class="blurb">A high-performance serving framework. I work where a 4&#8209;bit quantized checkpoint meets the engine and its kernels.</p>
           <ol class="claims" start="8">
-            <li><a href="https://github.com/sgl-project/sglang/pull/49531"><span class="c-t">GLM-4.7-Flash loads compressed-tensors W4A16 checkpoints.</span><span class="c-m"><b>#49531</b> 11 Nov 2026 <i>+684 −26</i></span></a></li>
-            <li><a href="https://github.com/sgl-project/sglang/pull/44213"><span class="c-t">NVFP4 W4A4 linear layers are served through FP4 Marlin when <code>--fp4-gemm-backend marlin</code> is set on SM100.</span><span class="c-m"><b>#44213</b> 16 Oct 2026 <i>+43 −6</i></span></a></li>
+            <li><a href="https://github.com/sgl-project/sglang/pull/49531"><span class="c-t">GLM-4.7-Flash loads compressed-tensors W4A16 checkpoints.</span><span class="c-w">Before, <code>sglang serve</code> on the AWQ 4-bit checkpoint failed in five places, each one hidden behind the last.</span><span class="c-m"><b>#49531</b> 11 Nov 2026 <i>+684 −26</i></span></a></li>
+            <li><a href="https://github.com/sgl-project/sglang/pull/44213"><span class="c-t">NVFP4 W4A4 linear layers are served through FP4 Marlin when <code>--fp4-gemm-backend marlin</code> is set on SM100.</span><span class="c-w">Before, the flag crashed during CUDA-graph capture, because FlashInfer’s <code>mm_fp4</code> has no marlin backend.</span><span class="c-m"><b>#44213</b> 16 Oct 2026 <i>+43 −6</i></span></a></li>
           </ol>
         </article>
 
@@ -256,10 +267,10 @@
           <p class="proj"><img src="assets/logos/areal-project.png" alt="" width="22" height="22"><a href="https://github.com/areal-project/AReaL">areal-project/AReaL</a> <span>5.9k stars</span></p>
           <p class="blurb">A reinforcement learning bridge for LLM agents. I work on its engine and its service layer.</p>
           <ol class="claims" start="10">
-            <li><a href="https://github.com/areal-project/AReaL/pull/1564"><span class="c-t">Engine: per-PP weight sync is gated on the SGLang backend.</span><span class="c-m"><b>#1564</b> 28 Jul 2026 <i>+192 −9</i></span></a></li>
-            <li><a href="https://github.com/areal-project/AReaL/pull/1179"><span class="c-t">The data blueprint is mounted via WSGI, and the engine blueprint adopts Pydantic.</span><span class="c-m"><b>#1179</b> 16 Apr 2026 <i>+135 −162</i></span></a></li>
-            <li><a href="https://github.com/areal-project/AReaL/pull/1154"><span class="c-t">Manual JSON parsing is replaced with Pydantic models.</span><span class="c-m"><b>#1154</b> 13 Apr 2026 <i>+89 −83</i></span></a></li>
-            <li><a href="https://github.com/areal-project/AReaL/pull/1609"><span class="c-t">API docs: obsolete <code>no_save_optim</code> guidance is corrected.</span><span class="c-m"><b>#1609</b> 17 Aug 2026 <i>+104 −28</i></span></a></li>
+            <li><a href="https://github.com/areal-project/AReaL/pull/1564"><span class="c-t">Engine: per-PP weight sync is gated on the SGLang backend.</span><span class="c-w">Before, Megatron training with vLLM rollouts aborted whenever the two pipeline-parallel sizes differed.</span><span class="c-m"><b>#1564</b> 28 Jul 2026 <i>+192 −9</i></span></a></li>
+            <li><a href="https://github.com/areal-project/AReaL/pull/1179"><span class="c-t">The data blueprint is mounted via WSGI, and the engine blueprint adopts Pydantic.</span><span class="c-w">Removes about 60 lines of endpoint logic that existed twice.</span><span class="c-m"><b>#1179</b> 16 Apr 2026 <i>+135 −162</i></span></a></li>
+            <li><a href="https://github.com/areal-project/AReaL/pull/1154"><span class="c-t">Manual JSON parsing is replaced with Pydantic models.</span><span class="c-w">FastAPI now validates shard requests, in place of hand-written type checks.</span><span class="c-m"><b>#1154</b> 13 Apr 2026 <i>+89 −83</i></span></a></li>
+            <li><a href="https://github.com/areal-project/AReaL/pull/1609"><span class="c-t">API docs: obsolete <code>no_save_optim</code> guidance is corrected.</span><span class="c-w">The old text steered Megatron users into resuming with a silently reset optimizer.</span><span class="c-m"><b>#1609</b> 17 Aug 2026 <i>+104 −28</i></span></a></li>
           </ol>
         </article>
     </div>
@@ -272,10 +283,10 @@
       <h3>Relier</h3>
       <p>A zero-job-loss reliability layer for Celery. <code>pip install relier</code></p>
     </a>
-    <a href="https://github.com/koladefaj/StoryCanon">
-      <h3>StoryCanon <span class="award">3rd place, Supermemory Localhost hackathon</span></h3>
+    <article>
+      <h3><a href="https://github.com/koladefaj/StoryCanon">StoryCanon</a> <a class="award" href="https://x.com/supermemory/status/2082743030055112846" aria-label="3rd place, Supermemory Localhost hackathon — winners announcement"><span>3rd place,</span><span class="award-brand"><img src="assets/logos/supermemory.svg" alt="" width="16" height="14">Supermemory Localhost hackathon</span></a></h3>
       <p>A local writing tool that catches continuity errors in fiction.</p>
-    </a>
+    </article>
     <a href="https://github.com/koladefaj/gia">
       <h3>Gia</h3>
       <p>Conversational voice AI with streaming speech and a distilled router.</p>
@@ -283,6 +294,6 @@
   </section>
 
 </main>
-<script src="main.js?v=16" defer></script>
+<script src="main.js?v=25" defer></script>
 </body>
 </html>
